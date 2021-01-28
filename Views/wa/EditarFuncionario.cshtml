@@ -1,0 +1,48 @@
+@model desafio_mvc.DTO.FuncionarioDTO
+
+<h3>Editar Funcionario</h3>
+<hr/>
+
+<form id ="funcionario" class="form-horizontal" asp-action="Editar" asp-controller="Funcionarios" method="POST">
+    <input type="hidden" asp-for="Id">
+
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do funcionario"><br>
+    <span asp-validation-for="Nome"></span>
+
+    <label asp-for="Matricula">Matricula</label>
+    <input type="text" asp-for="Matricula" class="form-control" placeholder="Numero de matricula"><br>
+    <span asp-validation-for="Matricula"></span>
+
+    <label asp-for="Cargo">Cargo</label>
+    <input type="text" asp-for="Cargo" class="form-control" placeholder="Cargo anterior"><br>
+    <span asp-validation-for="Cargo"></span>
+
+    <label asp-for="Level">Level</label>
+    <select class="form-control" asp-for="Level">
+        <option value='L0'>L0</option>
+        <option value='L1'>L1</option>
+        <option value='L2'>L2</option>
+        <option value='L3'>L3</option>
+        <option value='L4'>L4</option>
+        <option value='L5'>L5</option>
+        <option value='L6'>L6</option>
+        <option value='L7'>L7</option>
+    </select>
+    <span asp-validation-for="Level"></span>
+
+    <label asp-for="Inicio_wa">Inicio WA</label>
+    <input type="date" asp-for="Inicio_wa" class="form-control"><br>
+    <span asp-validation-for="Inicio_wa"></span>
+
+    <label asp-for="Gft_Id">GFT</label>
+    <select class="form-control" asp-for="Gft_Id" asp-items='@(new SelectList(@ViewBag.Gfts,"Id","Nome"))'></select>
+    <span asp-validation-for="Inicio_wa"></span>
+
+    <label asp-for="Gft_Id">GFT</label>
+    <select class="form-control" asp-for="FuncTecnologia" asp-items='@(new SelectList(@ViewBag.Tecnologia,"Id","Nome"))'></select>
+
+    <button class="btn btn-success">Cadastrar</button>
+</form> 
+<br>
+<a asp-action="Funcionarios" asp-controller="wa" class="btn btn-dark">Voltar</a>

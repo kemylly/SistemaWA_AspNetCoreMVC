@@ -1,0 +1,100 @@
+@model IEnumerable<desafio_mvc.Models.Vaga> 
+@{
+    Layout = "_Layout";
+}
+
+<script>
+    $(document).ready( function () {
+    $('#vagas').DataTable({
+        "language": {
+            "lengthMenu" : "Mostrando _MENU_ registros por pagina",
+            "zeroRecords":  "Nada encontrado, desculpa",
+            "info" : "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty" : "Nenhum registro disponivel",
+            "search":   "Buscar:",
+            "paginate": {
+                "first":    "Primeiro",
+                "last":     "Ultimo",
+                "next":     "Proximo",
+                "previous": "Anterior"
+            }
+        }
+    });
+    });
+</script>
+
+@* <script>
+function deleta(){
+    var x;
+    var r=confirm("Deseja deletar?");
+    if (r==true)
+    {
+        value="@vaga.Id";
+    }
+    else
+    {
+        x="";
+    }
+        document.getElementById("demo").innerHTML=x;
+    //alert('Deseja deletar?');
+}
+</script> *@
+
+<div class="container-sm text-center">
+    <h2>Vagas cadastradas</h2>
+    <br>
+    <div class="btn-group btn-group-justified">
+        <a asp-action="CadastrarVaga" asp-controller="wa" class="btn btn-outline-success">Cadastrar Vaga</a>
+        <a asp-action="Projetos" asp-controller="wa" class="btn btn-outline-warning ">Projetos</a>
+        <a asp-action="CadastrarProjeto" asp-controller="wa" class="btn btn-outline-warning ">Cadastrar Projeto</a>
+        <a asp-action="Tecnologia" asp-controller="wa" class="btn btn-outline-info ">Tecnologias</a>
+        <a asp-action="CadastrarTecnologia" asp-controller="wa" class="btn btn-outline-info">Cadastrar Tecnologias</a>
+    </div>
+    
+    <hr/>
+
+
+    @if (Model != null)
+    {
+        <table id="vagas" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Codigo </th>
+                <th>Abertura </th>
+                <th>Projeto </th>
+                <th>Quantidade</th>
+                <th>Descricao </th>
+                <th>Tecnologias</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vaga in Model){
+                <tr>
+                    <td>@vaga.Codigo_vaga</td>
+                    <td>@vaga.Abertura_vaga</td>
+                    <td>@vaga.ProjetoCad.Nome</td>
+                    <td>@vaga.Qtd_vaga</td>
+                    <td>@vaga.Descricao_vaga</td>
+                    <td>@foreach (var tec in vaga.Tecnologias.Select(t => t.Tecnologia))
+                    {
+                        @tec.Nome
+                    }</td>
+                    <td>
+                    <a href="/wa/EditarVaga/@vaga.Id" class="btn btn-success">Editar</a>
+
+                    <form asp-action="Deletar" asp-controller="Vagas" style="display: inline;">
+                        <input type="hidden" name="id" id="id" value="@vaga.Id">
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    else {
+        <h1>Nenhuma vaga encontrada</h1>
+    }
+
+</div>

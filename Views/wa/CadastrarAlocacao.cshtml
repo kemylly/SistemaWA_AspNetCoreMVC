@@ -1,0 +1,20 @@
+@model desafio_mvc.DTO.AlocarDTO
+
+<div class="text-center">
+    <h3>Confirmar Alocação</h3>
+    <hr/>
+    <form asp-action="Alocar" asp-controller="Alocacao">
+        <input type="hidden" asp-for="Id">
+
+        <label asp-for="FuncionarioID">Funcionario</label>
+        <select class="form-control" asp-for="FuncionarioID" asp-items='@(new SelectList(@ViewBag.Funcionarios,"Id","Nome"))'></select>
+        
+        <label asp-for="VagaID">Vaga</label>
+        <select class="form-control" asp-for="VagaID" asp-items='@(new SelectList(@ViewBag.Vagas,"Id","Descricao_vaga"))'></select>
+        <br>
+        <button class="btn btn-success">Finalizar Alocação</button>
+    </form>
+    <br>
+    <a asp-action="Alocar" asp-controller="wa" class="btn btn-dark">Voltar</a>
+</div>
+

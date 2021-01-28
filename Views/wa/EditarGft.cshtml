@@ -1,0 +1,50 @@
+@model desafio_mvc.DTO.GftDTO
+
+<h2>Editar uma sede</h2>
+<hr/>
+
+<form id="gft" class="form-horizontal" asp-action="Editar" asp-controller="Gft" method="POST">
+    <input type="hidden" asp-for="Id">
+
+    <label asp-for="Cep">CEP</label>
+    <input type="text" asp-for="Cep" class="form-control" placeholder="07951-000"><br>
+    <span asp-validation-for="Cep"></span>
+    
+    <label asp-for="Cidade">Cidade</label>
+    <input type="text" asp-for="Cidade" class="form-control" placeholder="Francisco Morato"><br>
+    <span asp-validation-for="Cidade"></span>
+
+    <label asp-for="Endereco">Endereço</label>
+    <input type="text" asp-for="Endereco" class="form-control" placeholder="Rua das Magnolias, 707 - Jardim Rosas"><br>
+    <span asp-validation-for="Endereco"></span>
+
+    <label asp-for="Estado">Estado</label>
+    <select class="form-control" asp-for="Estado">
+        <option value='AM'>AM</option>
+        <option value='SP'>SP</option>
+        <option value='SC'>SC</option>
+        <option value='PR'>PR</option>
+        <option value='MG'>MG</option>
+        <option value='RJ'>RJ</option>
+        <option value='ES'>ES</option>
+        <option value='RS'>RS</option>
+        <option value='GO'>GO</option>
+    </select>
+    <span asp-validation-for="Estado"></span>
+
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome"><br>
+    <span asp-validation-for="Nome"></span>
+
+    <label asp-for="Telefone">Telefone</label>
+    <input type="number" asp-for="Telefone" class="form-control" placeholder="4489-6031"><br>
+    <span asp-validation-for="Telefone"></span>
+
+    <label asp-for="Foto">Foto</label>
+    <input type="file" asp-for="Foto" accept="image/png,image/jpg"><br>
+    <span asp-validation-for="Foto"></span>
+
+    <button class="btn btn-success">Atualizar</button>
+</form> 
+<br>
+<a asp-action="Gft" asp-controller="wa" class="btn btn-dark">Voltar</a>

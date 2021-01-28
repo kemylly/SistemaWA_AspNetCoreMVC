@@ -1,0 +1,32 @@
+@model desafio_mvc.DTO.VagaDTO
+
+<h2>Edição de uma Vaga</h2>
+<hr/>
+
+<form id="vaga" class="form-horizontal" asp-action="Editar" asp-controller="Vagas" method="POST">
+    <input type="hidden" asp-for="Id">
+
+    <label asp-for="Abertura_vaga">Abertura da vaga</label>
+    <input type="date" asp-for="Abertura_vaga" class="form-control"><br>
+    <span asp-validation-for="Abertura_vaga"></span>
+    
+    @* <label asp-for="Codigo_vaga">Codigo da vaga</label>
+    <input type="text" asp-for="Codigo_vaga" class="form-control" placeholder="#C43HJ"><br>
+    <span asp-validation-for="Codigo_vaga"></span> *@
+
+    <label asp-for="Descricao_vaga">Descrição da vaga</label>
+    <input type="text" asp-for="Descricao_vaga" class="form-control"><br>
+    <span asp-validation-for="Descricao_vaga"></span>
+
+    <label asp-for="ProjetoCad">Projeto</label>
+    <select class="form-control" asp-for="ProjetoCad" asp-items='@(new SelectList(@ViewBag.Projetos,"Id","Nome"))'></select>
+    <span asp-validation-for="ProjetoCad"></span>
+
+    <label asp-for="Qtd_vaga">Quantidade de vagas</label>
+    <input type="number" asp-for="Qtd_vaga" class="form-control"><br>
+    <span asp-validation-for="Qtd_vaga"></span>
+
+    <button class="btn btn-success">Atualizar</button>
+</form> 
+<br>
+<a asp-action="Vagas" asp-controller="wa" class="btn btn-dark">Voltar</a>

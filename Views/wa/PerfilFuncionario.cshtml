@@ -1,0 +1,47 @@
+@model desafio_mvc.DTO.FuncionarioDTO
+
+<h3>Perfil Funcionario</h3>
+<hr/>
+
+<div class="container">
+<!--jumbotron como cabeçario-->
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/Imagens/@Model.Foto" class="rounded float-left" width="100%" asp-append-version="true" alt="Imagem funcionario"/>
+            </div>
+            <div class="col-8">
+                <h1 asp-for="Nome" class="display-3">@Model.Nome</h1>
+                <p asp-for="Nome" class="lead">@Model.Cargo</p>
+            </div>
+        </div>
+        
+    </div>
+<!--fim do cabeçario-->
+
+<!--informações em duas colunas-->
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <h4>Matricula</h4>
+            <p>@Model.Matricula</p>
+
+            <h4>Cargo</h4>
+            <p>@Model.Cargo</p>
+
+            <h4>Level</h4>
+            <p>@Model.Level</p>
+        </div>
+        <div class="col-lg-6">
+            <h4>Incio em WA</h4>
+            <p>@Model.Inicio_wa</p>
+
+            <h4>Termino em WA</h4>
+            <p>@Model.Termino_wa</p>
+
+            <h4>GFT</h4>
+            <p>@Model.Gft_Id</p>
+        </div>
+    </div>
+<!--fim das colunas-->
+</div>
+

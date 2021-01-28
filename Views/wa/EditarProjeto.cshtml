@@ -1,0 +1,16 @@
+@model desafio_mvc.DTO.ProjetoDTO
+
+<h2>Editar um Projeto</h2>
+<hr/>
+
+<form class="form-horizontal" asp-action="Editar" asp-controller="Projeto" method="POST">
+    <input type="hidden" asp-for="Id">
+    
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome">
+    <span asp-validation-for="Nome" class="text-danger"></span><br>
+
+    <button class="btn btn-success">Atualizar</button>
+</form> 
+<br>
+<a asp-action="Projetos" asp-controller="wa" class="btn btn-success">Voltar</a>

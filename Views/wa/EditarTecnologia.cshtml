@@ -1,0 +1,17 @@
+@model desafio_mvc.DTO.TecnologiaDTO;
+
+<h2>Editar Tecnologia</h2>
+<hr/>
+
+<form class="form-horizontal" asp-action="Editar" asp-controller="Tecnologia" method="POST">
+    <input type="hidden" asp-for="Id">
+
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Mainframe"><br>
+    <span asp-validation-for="Nome"></span>
+
+    <button class="btn btn-success">Atualizar</button>
+</form> 
+<br>
+
+<a asp-action="Tecnologia" asp-controller="wa" class="btn btn-dark">Voltar</a>

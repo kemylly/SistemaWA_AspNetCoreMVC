@@ -1,0 +1,65 @@
+ @model IEnumerable<desafio_mvc.Models.Alocar>
+
+<h2 class="text-center">Sugestões de Alocação</h2>
+<hr>
+<br>
+<a class="btn btn-secondary" asp-action="Sugestao" asp-controller="Alocacao" role="button">Gerar sugestões</a>
+<br>
+<br>
+
+@foreach (var alo in Model)
+{
+  @if(alo.FuncionarioID.Status == true)
+  {
+    <div class="jumbotron">
+      @* Esse lado esta o funcionario *@
+      <div class="row">
+        <div class="col-sm-6"> 
+          <h1>@alo.FuncionarioID.Nome</h1>
+          <p class="lead">Cargo: @alo.FuncionarioID.Cargo - @alo.FuncionarioID.Level</p>
+          <p class="font-weight-bolder">Principal Tecnologia: @foreach (var tec in alo.FuncionarioID.FuncTecnologia.Select(t => t.Tecnologia))
+              {
+                @tec.Nome
+              }
+          </p>
+          @* <p class="lead">@alo.FuncionarioID.Gft_Id.Nome</p> *@
+          <p class="font-weight-lighter">GFT Brasil></p>
+          <p class="font-weight-lighter">Matricula: @alo.FuncionarioID.Matricula</p>
+          <br>
+          <a class="btn btn-dark col-sm-6" href="/wa/PerfilFuncionario/@alo.FuncionarioID.Id">Perfil</a>
+        </div>
+
+        @* Esse lado esta a vaga *@
+        <div class="col-sm-6">
+          <h1>@alo.VagaID.Descricao_vaga</h1>
+          @* <p class="font-weight-bolder">Projeto: @alo.VagaID.ProjetoCad.Nome</p> *@
+          <p class="font-weight-bolder">Projeto: </p>
+          <p class="font-weight-bolder">Principal Tecnologia: @foreach (var tec in alo.VagaID.Tecnologias.Select(t => t.Tecnologia))
+              {
+                @tec.Nome
+              }
+          </p>
+          <p class="font-weight-lighter">Quantidade: @alo.VagaID.Qtd_vaga vagas</p>
+          <p class="font-weight-lighter">Codigo da Vaga: @alo.VagaID.Codigo_vaga</p>
+        </div>
+      </div>
+      
+
+      <hr class="my-4">
+      <div class="row">
+          <a class="btn btn-primary" href="/wa/CadastrarAlocacao/@alo.Id">Alocar</a> 
+          <form asp-action="Dispensar" asp-controller="Alocacao" style="display: inline;">
+            <input type="hidden" name="id" id="id" value="@alo.Id">
+            <button class="btn btn-danger">Dispensar</button>
+          </form>
+      </div>
+     
+     
+    </div>
+  }
+  else{
+
+  }
+  
+}
+

@@ -1,0 +1,79 @@
+@model IEnumerable<desafio_mvc.Models.Projeto> 
+
+@{
+    Layout = "_Layout";
+}
+
+@* <script>
+    function deleta(){
+    var x;
+    if (confirm("Deseja deletar?")) {
+                     
+        } else {   
+                       
+        }
+        document.getElementById("demo").innerHTML=x;
+    }
+    </script> *@
+
+
+<script>
+    $(document).ready( function () {
+    $('#projetos').DataTable({
+        "language": {
+            "lengthMenu" : "Mostrando _MENU_ registros por pagina",
+            "zeroRecords":  "Nada encontrado, desculpa",
+            "info" : "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty" : "Nenhum registro disponivel",
+            "search":   "Buscar:",
+            "paginate": {
+                "first":    "Primeiro",
+                "last":     "Ultimo",
+                "next":     "Proximo",
+                "previous": "Anterior"
+            }
+        }
+    });
+    });
+</script>
+
+<div class="container-sm text-center">
+    <h2>Projetos cadastrados</h2>
+
+    <a asp-action="CadastrarProjeto" asp-controller="wa" class="btn btn-outline-info">Cadastrar Projeto</a>
+    <a asp-action="Vagas" asp-controller="wa" class="btn btn-outline-warning">Vagas</a>
+    
+    <hr/>
+
+    @if (Model != null)
+    {
+        <table id="projetos" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nome </th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var proj in Model){
+                <tr>
+                    <td>@proj.Nome</td>
+                    <td>
+                        <a href="/wa/EditarProjeto/@proj.Id" class="btn btn-success">Editar</a>
+                        
+                        <button class="btn btn-danger" onclick="deleta()">Deletar</button>
+
+                        <form asp-action="Deletar" asp-controller="Projeto" style="display: inline;">
+                            <input type="hidden" name="id" id="id" value="@proj.Id">
+                            <button id=deletar  type="hidden" class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    else {
+        <h1>Nenhum projeto encontrado</h1>
+    }
+</div>

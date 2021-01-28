@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="cover-container text-center">
+
+        <img src="~/img/inicio2.png" alt="Banner inicio" width="1100px">
+        <br>
+        <br>
+        <a asp-action="Index" asp-controller="wa" class="btn btn-outline-primary btn-block">WA</a>
+        <a id="fit" class="btn btn-outline-dark btn-block" asp-action="Popular" asp-controller="Popular" onclick="this.disabled = true;">Popular Banco</a>
+       
+</div>

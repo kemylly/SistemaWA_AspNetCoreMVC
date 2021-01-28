@@ -1,0 +1,50 @@
+@model IEnumerable<desafio_mvc.Models.Gft> 
+
+<div class="container-sm">
+    <h2>Gft cadastradas</h2>
+    <a asp-action="CadastrarGft" asp-controller="wa" class="btn btn-success">Cadastrar Gft</a>
+    <a asp-action="Funcionarios" asp-controller="wa" class="btn btn-info">Funcionarios</a>
+    <hr/>
+
+    @if(Model != null){
+        <div class="row">
+        @foreach (var gfts in Model) // @model
+        {
+        <div class="col-sm-4">
+            <div class="card" style="width: 22rem;">
+                @* <img src="~/img/gatodesenho.jpg" class="card-img-top" alt="animal"> *@
+                <div class="card-body">
+                    <div class="image-fluid">
+                        <img src="~/Imagens/@gfts.Foto" class="card-img-top" width="100%" asp-append-version="true" alt="Imagem gft"/>
+                    </div>
+                
+                    <br/><br/>
+
+                    <h5 class="card-title">@gfts.Nome</h5>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Endereço: @gfts.Endereco - @gfts.Cep @gfts.Cidade @gfts.Estado</li>
+                    @* <li class="list-group-item">CEP: </li> *@
+                    <li class="list-group-item">Telefone: @gfts.Telefone</li>
+                </ul>
+                
+                <div class="card-body">
+
+                    <a href="/wa/EditarGft/@gfts.Id" class="btn btn-success">Editar</a>
+
+                    <form asp-action="Deletar" asp-controller="Gft" style="display: inline;">
+                        <input type="hidden" name="id" id="id" value="@gfts.Id">
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+                </div>
+            </div>
+            <br/>
+        </div>
+        }
+    </div>
+    }
+    else{
+        <h1>Nenhuma GFT encontrada</h1>
+    }
+</div>
